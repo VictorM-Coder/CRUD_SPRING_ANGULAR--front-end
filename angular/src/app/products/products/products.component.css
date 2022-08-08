@@ -1,13 +1,26 @@
 table {
   width: 100%;
-  
+
 }
 
 mat-card{
-  padding: 0px;
+  padding: 8px;
   margin: 1%;
-  border-radius: 0px;
+  margin-top: 24px;
+  border-radius: 4px;
+  display: inline-block;
 }
+
+mat-toolbar{
+  border-radius: 4px 4px 0px 0px;
+}
+
+.table-card{
+  padding: 0px;
+  width: 98%;
+  display: block;
+}
+
 
 th{
   font-size: 1.2em;
@@ -16,4 +29,8 @@ th{
 th, td{
   text-align: left;
   padding-left: 16px;
+}
+
+.form-item{
+  margin: 0px 16px;
 }

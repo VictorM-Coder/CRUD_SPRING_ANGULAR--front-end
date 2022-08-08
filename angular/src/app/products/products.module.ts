@@ -5,19 +5,28 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products/products.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatCardModule } from '@angular/material/card';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { InputOutputPropertySet } from '@angular/compiler';
+
 
 
 @NgModule({
   declarations: [
-    ProductsComponent
+    ProductsComponent,
+
   ],
   imports: [
     CommonModule,
     ProductsRoutingModule,
     CdkTableModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class ProductsModule { }

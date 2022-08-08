@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "notebook", "barCode": "123456789", "price": 2300.90},
+  { "id": 2, "name": "ipad", "barCode": "987654321", "price": 4100.00}
+]
