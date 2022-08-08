@@ -26,8 +26,8 @@
 <mat-card>
   <p>
     <mat-form-field class="form-item" appearance="legacy" floatLabel="always">
-      <mat-label>Id</mat-label>
-      <input id="inputId" matInput type="number"  placeholder="0">
+      <mat-label>Bar Code</mat-label>
+      <input id="inputRemoveBarCode" matInput type="number"  placeholder="0">
     </mat-form-field>
 
     <button (click)="removeProduct()" class="form-item" mat-raised-button color="primary">REMOVE</button>
@@ -39,15 +39,9 @@
 
   <mat-card class="table-card">
     <mat-toolbar color="primary">
-      <span>Produtos cadastrados</span>
+      <span>Produts</span>
     </mat-toolbar>
     <table cdk-table [dataSource]="products">
-      <!-- Id Column -->
-      <ng-container cdkColumnDef="id">
-        <th cdk-header-cell *cdkHeaderCellDef> Id </th>
-        <td cdk-cell *cdkCellDef="let product"> {{product.id}} </td>
-      </ng-container>
-
       <!-- Name Column -->
       <ng-container cdkColumnDef="name">
         <th cdk-header-cell *cdkHeaderCellDef> Name </th>

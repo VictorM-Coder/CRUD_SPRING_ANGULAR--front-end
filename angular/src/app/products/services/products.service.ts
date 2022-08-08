@@ -21,11 +21,13 @@ export class ProductsService {
 
   post(product: Product){
     console.log(product)
-    return this.httpClient.post<Product>(URL, product)
+    return this.httpClient.post<Product>(`http://localhost:8080/api/product`, product)
   }
 
-  delete(id:number){
-    return this.httpClient.delete(URL + `/remove/${id}`)
+  delete(barCode:String){
+    console.log(URL + `/remove/barCode/${barCode}`)
+    return this.httpClient.delete<Product>(URL + `/remove/barCode/${barCode}`, {}).subscribe(data =>
+      console.log(data))
   }
 
 }

@@ -2,7 +2,7 @@
 import { ProductsService } from './../services/products.service';
 import { Product } from './../model/product';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
   public products: Observable<Product[]>
-  public displayedColumns = ['id', 'name', 'barCode', 'price']
+  public displayedColumns = ['name', 'barCode', 'price']
 
   constructor(private productService: ProductsService) {
     this.products = productService.findAll()
@@ -34,7 +34,9 @@ export class ProductsComponent implements OnInit {
   }
 
   removeProduct(){
-
+    let barCode: string = ((document.getElementById('inputRemoveBarCode') as HTMLInputElement).value)
+    window.alert(barCode)
+    this.productService.delete(barCode)
   }
 
   private getProduct(){
