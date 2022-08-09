@@ -1,11 +1,13 @@
-table {
-  width: 100%;
-
+.body-general{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 mat-card{
-  padding: 8px;
+  padding: 0px;
   margin: 1%;
+  height: fit-content;
   margin-top: 24px;
   border-radius: 4px;
   display: inline-block;
@@ -15,10 +17,18 @@ mat-toolbar{
   border-radius: 4px 4px 0px 0px;
 }
 
+.search-bar{
+  color: white;
+  font-size: 14px;
+}
+
+.margin-left-auto{
+  margin-left: auto;
+}
+
 .table-card{
   padding: 0px;
-  width: 98%;
-  display: block;
+  display: inline-block;
 }
 
 
@@ -28,9 +38,9 @@ th{
 
 th, td{
   text-align: left;
-  padding-left: 16px;
+  padding: 24px;
 }
 
 .form-item{
-  margin: 0px 16px;
+  margin: 16px;
 }

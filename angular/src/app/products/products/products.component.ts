@@ -1,8 +1,10 @@
 
 import { ProductsService } from './../services/products.service';
 import { Product } from './../model/product';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { __values } from 'tslib';
+import { MatOption } from '@angular/material/core';
 
 @Component({
   selector: 'app-products',
@@ -13,8 +15,15 @@ export class ProductsComponent implements OnInit {
   public products: Observable<Product[]>
   public displayedColumns = ['name', 'barCode', 'price']
 
+  @ViewChild('inputName', {static:false}) inputName!: ElementRef;
+  @ViewChild('inputBarCode', {static:false}) inputBarCode!: ElementRef;
+  @ViewChild('inputPrice', {static:false}) inputPrice!: ElementRef;
+  @ViewChild('inputSelect', {static:false}) inputSelect!: MatOption;
+
+
   constructor(private productService: ProductsService) {
     this.products = productService.findAll()
+
   }
 
   ngOnInit(): void {
@@ -39,16 +48,47 @@ export class ProductsComponent implements OnInit {
     this.productService.delete(barCode)
   }
 
+  updateProduct(){
+
+  }
+
+  changeFormMode(){
+    switch(this.inputSelect.value){
+      case "create":
+        this.changeFormToCreateMode()
+        break
+      case "update":
+
+        break
+      case "view":
+        this.changeFormToViewMode()
+        break
+    }
+  }
+
   private getProduct(){
-    let name:string = ((document.getElementById('inputName') as HTMLInputElement).value)
-    let barCode:string = ((document.getElementById('inputBarCode') as HTMLInputElement).value)
-    let price:number = (Number)((document.getElementById('inputPrice') as HTMLInputElement).value)
+    let name:string = this.inputName.nativeElement.value
+    let barCode:string = this.inputBarCode.nativeElement.value
+    let price:number = (Number)(this.inputPrice.nativeElement.value)
 
     if(name !== '' && barCode !== '' && price > 0){
       let product: Product= {name: name, barCode: barCode, price: price}
+      console.log(product)
       return product
     }else{
       return null
     }
+  }
+
+  private changeFormToViewMode(){
+    this.inputName.nativeElement.disabled = true;
+    this.inputBarCode.nativeElement.disabled = true;
+    this.inputPrice.nativeElement.disabled = true;
+  }
+
+  private changeFormToCreateMode(){
+    this.inputName.nativeElement.disabled = false;
+    this.inputBarCode.nativeElement.disabled = false;
+    this.inputPrice.nativeElement.disabled = false;
   }
 }
