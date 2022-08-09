@@ -2,7 +2,7 @@
 import { ProductsService } from './../services/products.service';
 import { Product } from './../model/product';
 import { Component, ElementRef, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { __values } from 'tslib';
 import { MatOption } from '@angular/material/core';
 
@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit {
   @ViewChild('inputBarCode', {static:false}) inputBarCode!: ElementRef;
   @ViewChild('inputPrice', {static:false}) inputPrice!: ElementRef;
   @ViewChild('inputSelect', {static:false}) inputSelect!: MatOption;
+  @ViewChild('inputSearch', {static:false}) inputSearch!: ElementRef
 
 
   constructor(private productService: ProductsService) {
@@ -49,7 +50,25 @@ export class ProductsComponent implements OnInit {
   }
 
   updateProduct(){
+    let barCode: string = ((document.getElementById('inputRemoveBarCode') as HTMLInputElement).value)
+    let product = this.getProduct();
 
+    if(product === null){
+      window.alert('Valores inválidos')
+    }else{
+      this.productService.put(barCode, product)
+    }
+
+  }
+
+  searchProduct(){
+    this.inputSelect.value = 'view'
+    this.changeFormMode()
+
+    this.productService.findByBarCode(this.inputSearch.nativeElement.value)
+    .subscribe(products => {
+        this.setView(products)
+    })
   }
 
   changeFormMode(){
@@ -58,7 +77,7 @@ export class ProductsComponent implements OnInit {
         this.changeFormToCreateMode()
         break
       case "update":
-
+        this.changeFormToCreateMode()
         break
       case "view":
         this.changeFormToViewMode()
@@ -73,7 +92,6 @@ export class ProductsComponent implements OnInit {
 
     if(name !== '' && barCode !== '' && price > 0){
       let product: Product= {name: name, barCode: barCode, price: price}
-      console.log(product)
       return product
     }else{
       return null
@@ -90,5 +108,11 @@ export class ProductsComponent implements OnInit {
     this.inputName.nativeElement.disabled = false;
     this.inputBarCode.nativeElement.disabled = false;
     this.inputPrice.nativeElement.disabled = false;
+  }
+
+  private setView(product:Product){
+    this.inputName.nativeElement.value = product.name
+    this.inputBarCode.nativeElement.value = product.barCode
+    this.inputPrice.nativeElement.value = product.price
   }
 }

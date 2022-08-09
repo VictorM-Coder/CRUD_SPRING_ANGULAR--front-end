@@ -20,14 +20,22 @@ export class ProductsService {
   }
 
   post(product: Product){
-    console.log(product)
     return this.httpClient.post<Product>(`http://localhost:8080/api/product`, product)
   }
 
+  put(barCode:string, product: Product){
+    return this.httpClient.put<Product>(URL + `/put/${barCode}`, product).subscribe(data => {
+      console.log(data)
+    })
+  }
+
   delete(barCode:String){
-    console.log(URL + `/remove/barCode/${barCode}`)
     return this.httpClient.delete<Product>(URL + `/remove/barCode/${barCode}`, {}).subscribe(data =>
       console.log(data))
+  }
+
+  findByBarCode(barCode:string){
+    return this.httpClient.get<Product>(URL + `/barCode/${barCode}`)
   }
 
 }

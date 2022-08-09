@@ -6,9 +6,9 @@
       <span>Product</span>
 
       <mat-form-field class="search-bar margin-left-auto" appearance="legacy">
-        <input id="inputRemoveBarCode" matInput   placeholder="Bar Code">
+        <input id="inputRemoveBarCode" matInput   placeholder="Bar Code" #inputSearch>
       </mat-form-field>
-      <button class="form-item" mat-raised-button color="secondary">SEARCH</button>
+      <button (click)="searchProduct()" class="form-item" mat-raised-button color="secondary">SEARCH</button>
 
     </mat-toolbar>
 
@@ -44,9 +44,10 @@
         (click) = "(inputSelect.value === 'create') ? postProduct(): updateProduct()"
         class="form-item" mat-raised-button color="primary"
         [innerText]="(inputSelect.value === 'create') ? 'ADD': 'SUBMIT'"
-        [disabled]="(inputSelect.value === 'view')" (click)="removeProduct()"></button>
+        [disabled]="(inputSelect.value === 'view')"></button>
 
-      <button [disabled]="(inputSelect.value === 'create')" (click)="removeProduct()" class="form-item" mat-raised-button color="primary">REMOVE</button>
+      <button [disabled]="(inputSelect.value === 'create')" (click)="removeProduct()"
+       class="form-item" mat-raised-button color="primary">REMOVE</button>
     </p>
 
   </mat-card>
