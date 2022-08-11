@@ -1,53 +1,60 @@
 
+
 <div class="body-general">
   <!--ADD and REMOVE-->
   <mat-card>
-    <mat-toolbar color="primary">
+    <mat-toolbar class="primary">
       <span>Product</span>
 
-      <mat-form-field class="search-bar margin-left-auto" appearance="legacy">
-        <input id="inputRemoveBarCode" matInput   placeholder="Bar Code" #inputSearch>
-      </mat-form-field>
-      <button (click)="searchProduct()" class="form-item" mat-raised-button color="secondary">SEARCH</button>
+      <div class="margin-left-auto form-input form-item">
+        <input id="inputRemoveBarCode" #inputSearch type="text" class="dds__form-control" placeholder="BarCode" maxlength="256">
+      </div>
+
+      <button (click)="searchProduct()" class="form-item" role="button" type="button" class="dds__btn dds__btn-secondary dds__text-truncate">SEARCH</button>
 
     </mat-toolbar>
 
-    <mat-form-field class="form-item margin-left-auto" appearance="fill">
-      <mat-label>CRUD Mode</mat-label>
-      <mat-select #inputSelect (selectionChange)="changeFormMode()" [value]="'create'">
-        <mat-option value="update">Update</mat-option>
-        <mat-option value="create">Create</mat-option>
-        <mat-option value="view">View</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="form-input form-item">
+      <label for="exampleFormControlSelect3">CRUD Mode</label>
+      <select #inputSelect (change)="changeFormMode()" [value]="'create'" class="dds__form-control" id="exampleFormControlSelect3">
+        <option value="update">Update</option>
+        <option value="create">Create</option>
+        <option value="view">View</option>
+      </select>
+    </div>
+
+    <div class="dds__form-group">
+      <div class="form-input form-item">
+        <label for="name-1">Product's name</label>
+        <input #inputName type="text" class="dds__form-control" placeholder="Name" maxlength="256" name="name-1" id="name-3">
+      </div>
+
+      <div class="form-input form-item">
+        <label for="name-2">Product's Bar Code</label>
+        <input #inputBarCode type="text" class="dds__form-control" placeholder="BarCode" maxlength="256" name="name-2" id="name-3">
+      </div>
+
+      <div class="form-input form-item">
+        <label for="name-3">Product's Price</label>
+        <input #inputPrice type="number" min="0" class="dds__form-control" placeholder="Price" maxlength="256" name="name-3" id="name-3">
+      </div>
+
+    </div>
 
     <p>
-      <mat-form-field class="form-item" appearance="legacy">
-        <mat-label>Product's name</mat-label>
-        <input class="teste" id="inputName" matInput placeholder="Name" #inputName>
-      </mat-form-field>
+        <button
+          (click) = "(inputSelect.value === 'create') ? postProduct(): updateProduct()"
+          [innerText]="(inputSelect.value === 'create') ? 'ADD': 'UPDATE'"
+          [disabled]="(inputSelect.value === 'view')"
+          role="button" type="button" class="form-item dds__btn dds__btn-primary dds__text-truncate">
+          ADD
+        </button>
 
-      <mat-form-field class="form-item" appearance="legacy">
-        <mat-label>Product's Bar Code</mat-label>
-        <input id="inputBarCode" matInput placeholder="barCode" #inputBarCode>
-      </mat-form-field>
-
-      <mat-form-field class="form-item" appearance="legacy" floatLabel="always">
-        <mat-label>Price</mat-label>
-        <input id="inputPrice" matInput type="number" placeholder="0" #inputPrice>
-        <span matPrefix>R$&nbsp;</span>
-      </mat-form-field>
-    </p>
-
-    <p>
-      <button
-        (click) = "(inputSelect.value === 'create') ? postProduct(): updateProduct()"
-        class="form-item" mat-raised-button color="primary"
-        [innerText]="(inputSelect.value === 'create') ? 'ADD': 'SUBMIT'"
-        [disabled]="(inputSelect.value === 'view')"></button>
-
-      <button [disabled]="(inputSelect.value === 'create')" (click)="removeProduct()"
-       class="form-item" mat-raised-button color="primary">REMOVE</button>
+        <button
+          [disabled]="(inputSelect.value === 'create')" (click)="removeProduct()"
+          role="button" type="button" class="form-item dds__btn dds__btn-primary dds__text-truncate">
+          REMOVE
+        </button>
     </p>
 
   </mat-card>
@@ -55,10 +62,10 @@
 
   <!--TABLE-->
   <mat-card class="table-card">
-    <mat-toolbar color="primary">
+    <mat-toolbar class="primary">
       <span>Products</span>
     </mat-toolbar>
-    <table cdk-table [dataSource]="products">
+    <table #cdkTable cdk-table [dataSource]="products">
       <!-- Name Column -->
       <ng-container cdkColumnDef="name">
         <th cdk-header-cell *cdkHeaderCellDef> Name </th>

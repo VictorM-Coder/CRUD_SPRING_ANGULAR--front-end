@@ -1,3 +1,8 @@
+.primary{
+  background-color: #0076ce;
+  color: white;
+}
+
 .body-general{
   display: flex;
   flex-wrap: wrap;
@@ -9,12 +14,8 @@ mat-card{
   margin: 1%;
   height: fit-content;
   margin-top: 24px;
-  border-radius: 4px;
   display: inline-block;
-}
-
-mat-toolbar{
-  border-radius: 4px 4px 0px 0px;
+  border-radius: 0px;
 }
 
 .search-bar{
@@ -23,7 +24,7 @@ mat-toolbar{
 }
 
 .margin-left-auto{
-  margin-left: auto;
+  margin-left: auto !important;
 }
 
 .table-card{
@@ -31,16 +32,22 @@ mat-toolbar{
   display: inline-block;
 }
 
-
 th{
   font-size: 1.2em;
+  text-align: left;
+  padding: 16px;
 }
 
-th, td{
+td{
   text-align: left;
-  padding: 24px;
+  padding: 0px 16px 16px 16px;
 }
 
 .form-item{
   margin: 16px;
+}
+
+.form-input{
+  width: 200px;
+  display: inline-block;
 }

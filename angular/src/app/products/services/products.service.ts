@@ -24,14 +24,11 @@ export class ProductsService {
   }
 
   put(barCode:string, product: Product){
-    return this.httpClient.put<Product>(URL + `/put/${barCode}`, product).subscribe(data => {
-      console.log(data)
-    })
+    return this.httpClient.put<Product>(URL + `/put/${barCode}`, product).pipe(take(1))
   }
 
   delete(barCode:String){
-    return this.httpClient.delete<Product>(URL + `/remove/barCode/${barCode}`, {}).subscribe(data =>
-      console.log(data))
+    return this.httpClient.delete<Product>(URL + `/remove/barCode/${barCode}`, {}).pipe(take(1))
   }
 
   findByBarCode(barCode:string){

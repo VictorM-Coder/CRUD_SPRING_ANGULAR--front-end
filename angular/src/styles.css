@@ -2,3 +2,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(228, 228, 228); }
+
+.snack{
+  color: white;
+  border-radius: 0px;
+}
+
+.snack button{
+  border: none;
+  color: white;
+}
+
+.snack-success{
+  background: #6ea204;
+}
+
+.snack-error{
+  background: #ce1126;
+}
