@@ -10,6 +10,7 @@
 - [Sobre o Projeto](#-sobre-o-projeto)
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Licença](#-licença)
+- [Back-End](#back-end)
 </br></br>
 
 ## 💡 Sobre o Projeto
@@ -26,6 +27,9 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - TypeScript
 - Angular
 <br><br> 
+
+## Back-end
+[Repositório](https://github.com/VictorM-Coder/CRUD_SPRING_ANGULAR--back-end)
 
 ## 📕 Licença
 
